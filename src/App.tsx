@@ -45,6 +45,33 @@ const COUNTRIES = [
   'Япония'
 ];
 
+const ADVOCACY: IInstitute = {
+  label: 'Поддержка аттрактора',
+  value: 'advocacy',
+  type: 'radio',
+  options: [
+    { label: 'талассократ', value: 'thalassocratic' },
+    { label: 'теллурократия', value: 'tellorocratic' },
+    { label: 'нет (независимый)', value: 'none (independent)' }
+  ]
+};
+
+const OPENNESS: IInstitute = {
+  label: 'Открытость',
+  value: 'openness',
+  type: 'radio',
+  options: [
+    { label: 'открытый регионализм', value: 'open regionalism' },
+    {
+      label: 'закрытый регионализм',
+      value: 'closed regionalism',
+      children: [
+        ADVOCACY
+      ]
+    }
+  ]
+};
+
 const SCOPE: IInstitute = {
   label: 'Сфера деятельности',
   value: 'scope',
@@ -64,59 +91,13 @@ const LATERALISM: IInstitute = {
   ]
 };
 
-const COMITMENT: IInstitute = {
+const COMMITMENT: IInstitute = {
   label: 'Степень обязательства',
   value: 'commitment',
   type: 'radio',
   options: [
     { label: 'рекомендательный', value: 'non-regulatory' },
     { label: 'обязывающий', value: 'regulatory' }
-  ]
-};
-
-const UNIQNESS_ALTERNATIVE: IInstitute = {
-  // condition: (values: IInstituteValues) => {
-  //   return values['uniqness/alternative'].value;
-  // },
-  label: 'Какая именно альтернатива?',
-  level: 1,
-  value: 'uniqness-alternative',
-  type: 'radio',
-  options: [
-    { label: 'Сфера деятельности', value: 'scope' },
-    { label: 'Степень обязательства', value: 'commitment' },
-    { label: 'Наличие базового института', value: 'has-basic' }
-  ]
-};
-
-const UNIQNESS: IInstitute = {
-  label: 'Уникальность',
-  value: 'uniqness',
-  type: 'radio',
-  options: [
-    {
-      label: 'есть альтернативный',
-      value: 'alternative',
-      children: [
-        UNIQNESS_ALTERNATIVE
-      ]
-    },
-    { label: 'нет альтернативного', value: 'unique' }
-  ]
-};
-
-const INHERITANCE_REQUIRED: IInstitute = {
-  // condition: (values: IInstituteValues) => {
-  //   console.log('condition', values['inheritance/deriative']);
-  //   return values['inheritance/deriative'].value;
-  // },
-  level: 1,
-  label: 'Требование к наследованию',
-  value: 'inheritance required',
-  type: 'radio',
-  options: [
-    { label: 'требуется вступить в базовый', value: 'yes' },
-    { label: 'не требуется', value: 'no' }
   ]
 };
 
@@ -136,37 +117,53 @@ const INHERITANCE: IInstitute = {
   ]
 };
 
-const OPENNESS: IInstitute = {
-  label: 'Открытость',
-  value: 'openness',
+const INHERITANCE_REQUIRED: IInstitute = {
+  label: 'Требование к наследованию',
+  value: 'inheritance required',
   type: 'radio',
   options: [
-    { label: 'открытый регионализм', value: 'open regionalism' },
-    { label: 'закрытый регионализм', value: 'closed regionalism' }
+    {
+      label: 'требуется вступить в базовый',
+      value: 'yes',
+      children: [
+        SCOPE,
+        COMMITMENT,
+        INHERITANCE,
+        OPENNESS
+      ]
+    },
+    { label: 'не требуется', value: 'no' }
   ]
 };
 
-const ADVOCACY: IInstitute = {
-  label: 'Поддержка аттрактора',
-  value: 'advocacy',
+
+const UNIQNESS: IInstitute = {
+  label: 'Уникальность',
+  value: 'uniqness',
   type: 'radio',
   options: [
-    { label: 'талассократ', value: 'thalassocratic' },
-    { label: 'теллурократия', value: 'tellorocratic' },
-    { label: 'нет (независимый)', value: 'none (independent)' }
+    {
+      label: 'есть альтернативный',
+      value: 'alternative',
+      children: [
+        SCOPE,
+        COMMITMENT,
+        INHERITANCE,
+        OPENNESS
+      ]
+    },
+    { label: 'нет альтернативного', value: 'unique' }
   ]
 };
+
 
 const INSTITUTES: IInstitute[] = [
   SCOPE,
   LATERALISM,
-  COMITMENT,
+  COMMITMENT,
   UNIQNESS,
-  // UNIQNESS_ALTERNATIVE,
   INHERITANCE,
-  // INHERITANCE_REQUIRED,
   OPENNESS,
-  ADVOCACY,
 ]
 
 /**

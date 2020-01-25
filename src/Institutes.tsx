@@ -19,6 +19,7 @@ interface IProps {
   values: IInstituteValues;
   institutes: IInstitute[];
   onChange: (values: IInstituteValues) => void;
+  level?: number;
 }
 
 export interface IOption {
@@ -33,7 +34,6 @@ export interface IInstitute {
   value: string;
   type: 'checkbox' | 'radio';
   options: IOption[];
-  level?: number;
 }
 
 export class Institutes extends React.Component<IProps> {
@@ -106,6 +106,7 @@ export class Institutes extends React.Component<IProps> {
         values={this.props.values[resultValue].children as IInstituteValues}
         institutes={o.children}
         onChange={onChange}
+        level={ (this.props.level || 0) + 1}
       />);
     });
   }
@@ -168,15 +169,16 @@ export class Institutes extends React.Component<IProps> {
         return this.renderCheckbox(institute, parent);
       }
     }
-    const style = { paddingLeft: `${(institute.level || 0) * 15}px` }
 
-    return (<div key={institute.value} className={'App__institute'} style={style}>
+    return (<div key={institute.value} className={'App__institute'}>
       {render()}
     </div>);
   }
 
   render() {
-    return (<div>
+    const style = { paddingLeft: `${(this.props.level || 0) * 15}px` }
+
+    return (<div style={ style }>
       {this.props.institutes.map(i => {
         return this.renderInstitute(i);
       })}
