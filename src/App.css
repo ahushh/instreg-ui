@@ -23,3 +23,23 @@
 .App__institute {
   padding-bottom: 15px;
 }
+
+.checkbox_size_m {
+  margin-bottom: 10px;
+}
+
+.App__membership {
+  margin-left: auto;
+  padding-left: 15px;
+}
+
+.App__membership .radio-group__top,
+.App__membership .radio {
+  padding-right: 5px;
+  margin-bottom: 0;
+}
+
+.App__membership .radio-group__inner,
+.App__membership .radio-group__box {
+  display: flex;
+}

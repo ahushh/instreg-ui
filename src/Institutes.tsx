@@ -4,6 +4,9 @@ import Radio from 'arui-feather/radio';
 import Checkbox from 'arui-feather/checkbox';
 import CheckboxGroup from 'arui-feather/checkbox-group';
 
+const LEVEL_MARGIN = 20;
+const LEVEL_PADDING = 5;
+
 export const generateInitialValuesForInstitutes = (institutes: IInstitute[]) => institutes.reduce((a, c) => ({
   ...a,
   ...c.options.reduce((a1, c1) => ({ ...a1, [c.value + '/' + c1.value]: { value: false } }), {})
@@ -19,13 +22,13 @@ interface IProps {
   values: IInstituteValues;
   institutes: IInstitute[];
   onChange: (values: IInstituteValues) => void;
-  level?: number;
+  level: number;
 }
 
 export interface IOption {
   label: string;
   value: string;
-  children?: IInstitute[];
+  children?: () => IInstitute[];
 }
 
 export interface IInstitute {
@@ -37,6 +40,9 @@ export interface IInstitute {
 }
 
 export class Institutes extends React.Component<IProps> {
+  static defaultProps = {
+    level: 0
+  }
   getResultValue(groupValue: string, optionValue: string) {
     return groupValue + '/' + optionValue;
   }
@@ -90,7 +96,7 @@ export class Institutes extends React.Component<IProps> {
         return null;
       }
       if (!this.props.values[resultValue].children) {
-        this.props.values[resultValue].children = generateInitialValuesForInstitutes(o.children);
+        this.props.values[resultValue].children = generateInitialValuesForInstitutes(o.children());
       }
       const onChange = (values: IInstituteValues) => {
         const state = {
@@ -104,9 +110,9 @@ export class Institutes extends React.Component<IProps> {
       };
       return (<Institutes
         values={this.props.values[resultValue].children as IInstituteValues}
-        institutes={o.children}
+        institutes={o.children()}
         onChange={onChange}
-        level={ (this.props.level || 0) + 1}
+        level={ this.props.level + 1}
       />);
     });
   }
@@ -176,7 +182,12 @@ export class Institutes extends React.Component<IProps> {
   }
 
   render() {
-    const style = { paddingLeft: `${(this.props.level || 0) * 15}px` }
+    const style = { 
+      marginLeft: `${this.props.level * (LEVEL_MARGIN)}px`,
+      paddingLeft: `${LEVEL_PADDING}px`,
+      marginTop: `${this.props.level * LEVEL_PADDING}px`,
+      borderLeft: this.props.level ? '1px solid #aaaa' : 'none',
+    };
 
     return (<div style={ style }>
       {this.props.institutes.map(i => {

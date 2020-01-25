@@ -65,7 +65,7 @@ const OPENNESS: IInstitute = {
     {
       label: 'закрытый регионализм',
       value: 'closed regionalism',
-      children: [
+      children: () => [
         ADVOCACY
       ]
     }
@@ -110,7 +110,7 @@ const INHERITANCE: IInstitute = {
     {
       label: 'производный',
       value: 'deriative',
-      children: [
+      children: () => [
         INHERITANCE_REQUIRED
       ]
     }
@@ -125,10 +125,10 @@ const INHERITANCE_REQUIRED: IInstitute = {
     {
       label: 'требуется вступить в базовый',
       value: 'yes',
-      children: [
+      children: () => [
         SCOPE,
         COMMITMENT,
-        INHERITANCE,
+        UNIQNESS,
         OPENNESS
       ]
     },
@@ -145,7 +145,7 @@ const UNIQNESS: IInstitute = {
     {
       label: 'есть альтернативный',
       value: 'alternative',
-      children: [
+      children: () => [
         SCOPE,
         COMMITMENT,
         INHERITANCE,
@@ -181,6 +181,8 @@ interface IState {
   institutes: IInstituteValues;
   minCountriesSelected: number;
   maxCountriesSelected: number;
+  displayMembership: boolean;
+  membership: ICountriesValues;
 }
 class App extends React.Component<IProps, IState> {
   countries = COUNTRIES;
@@ -191,22 +193,35 @@ class App extends React.Component<IProps, IState> {
     institutes: generateInitialValuesForInstitutes(this.institutes),
     minCountriesSelected: 0,
     maxCountriesSelected: 0,
+    membership: this.countries.reduce((a, c) => ({ ...a, [c]: false }), {}),
+    displayMembership: false,
   }
 
   onInstituteChange = (institutes: IInstituteValues) => {
-    let selectedRestrictions = {};
+    let extraState: any = {};
     if (institutes['lateralism/bilateral']) {
-      selectedRestrictions = { minCountriesSelected: 2, maxCountriesSelected: 2 };
+      extraState = { minCountriesSelected: 2, maxCountriesSelected: 2 };
     } else if (institutes['lateralism/multilateral']) {
-      selectedRestrictions = { minCountriesSelected: 3, maxCountriesSelected: 0 };
+      extraState = { minCountriesSelected: 3, maxCountriesSelected: 0 };
     }
-    this.setState({ institutes, ...selectedRestrictions });
+    console.log("institutes['inheritance/deriative'])", institutes['inheritance/deriative']);
+    if (institutes['inheritance/deriative'].value) {
+      extraState.displayMembership = true;
+    } else {
+      extraState.displayMembership = false;
+    }
+    this.setState({ institutes, ...extraState });
     console.log(institutes);
 
   }
   onCountriesChange = (countries: ICountriesValues) => {
     this.setState({ countries });
     console.log(countries);
+  }
+
+  membershipOnChange = (value: boolean, name: string) => {
+    console.log('membershipOnChange', value, name);
+    this.setState({ membership: { ...this.state.membership, [name]: value } });
   }
 
   render() {
@@ -229,6 +244,9 @@ class App extends React.Component<IProps, IState> {
             values={this.state.countries}
             minSelected={this.state.minCountriesSelected}
             maxSelected={this.state.maxCountriesSelected}
+            membershipValue={this.state.membership}
+            displayMembership={this.state.displayMembership}
+            membershipOnChange={this.membershipOnChange}
           />
         </div>
       </div>

@@ -5,6 +5,8 @@ import Label from 'arui-feather/label';
 import Plate from 'arui-feather/plate';
 import IconError from 'arui-feather/icon/ui/error';
 import Heading from 'arui-feather/heading';
+import RadioGroup from 'arui-feather/radio-group';
+import Radio from 'arui-feather/radio';
 
 export interface ICountriesValues {
   [k: string]: boolean;
@@ -15,6 +17,10 @@ interface IProps {
   values: ICountriesValues;
   minSelected: number;
   maxSelected: number;
+
+  membershipValue: ICountriesValues;
+  displayMembership: boolean;
+  membershipOnChange: (value: boolean, name: string) => void;
 }
 
 export class Countries extends React.Component<IProps> {
@@ -70,7 +76,7 @@ export class Countries extends React.Component<IProps> {
     const handleCountryGroup = (group: string[], groupValue: string) => {
       if (selected.find(x => x === groupValue)) {
         selected = selected.filter(k => !group.includes(k));
-      } 
+      }
     };
 
     handleCountryGroup(this.aseanCountries, 'АСЕАН');
@@ -110,7 +116,25 @@ export class Countries extends React.Component<IProps> {
     }
     return true;
   }
-
+  renderMembership(value: boolean, country: string) {
+    if (!this.props.displayMembership) {
+      return null;
+    }
+    return (<RadioGroup label={'Состоит в базовом?'} key={'membership' + country} className='App__membership'>
+      <Radio
+        text={'Да'}
+        value={'yes'}
+        onChange={() => this.props.membershipOnChange(true, country)}
+        checked={value}
+      />
+      <Radio
+        text={'Нет'}
+        value={'no'}
+        onChange={() => this.props.membershipOnChange(false, country)}
+        checked={!value}
+      />
+    </RadioGroup>);
+  }
   render() {
     return (<div>
       <Heading size='xs'>
@@ -127,18 +151,22 @@ export class Countries extends React.Component<IProps> {
           }
         />
       }
-      <CheckBoxGroup label={<Label size='m'>{this.label}</Label>}>
-        {this.countriesOptions.map(option => (
-          <CheckBox
-            key={option.value}
-            onChange={this.onChange}
-            disabled={this.isDisabled(option.value)}
-            checked={this.props.values[option.value]}
-            {...option}
-          />
-        ))}
-      </CheckBoxGroup>
-
+      <div className="App__container">
+        <CheckBoxGroup label={<Label size='m'>{this.label}</Label>}>
+          {this.countriesOptions.map(option => (
+            <div key={option.value} style={{ display: 'flex' }}>
+              <CheckBox
+                key={option.value}
+                onChange={this.onChange}
+                disabled={this.isDisabled(option.value)}
+                checked={this.props.values[option.value]}
+                {...option}
+              />
+              {this.renderMembership(this.props.membershipValue[option.value], option.value)}
+            </div>
+          ))}
+        </CheckBoxGroup>
+      </div>
     </div>)
   }
 }
