@@ -23,3 +23,7 @@
 .App__institute {
   padding-bottom: 15px;
 }
+
+.App__institute--level1 {
+  padding-left: 15px;
+}

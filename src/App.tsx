@@ -82,6 +82,20 @@ const INSTITUTES: IInstitute[] = [
     ]
   },
   {
+    condition: (values: IInstituteValues) => {
+      return values['uniqness/alternative'];
+    },
+    label: 'Какая именно альтернатива?',
+    level: 1,
+    value: 'uniqness-alternative',
+    type: 'radio',
+    options: [
+      { label: 'Сфера деятельности', value: 'scope' },
+      { label: 'Степень обязательства', value: 'commitment'},
+      { label: 'Наличие базового института', value: 'has-basic' }
+    ]
+  },
+  {
     label: 'Наследование',
     value: 'inheritance',
     type: 'radio',
@@ -95,9 +109,10 @@ const INSTITUTES: IInstitute[] = [
   },
   {
     condition: (values: IInstituteValues) => {
-      console.log('condition', values ? values['inheritance/deriative'] : '');
-      return values && values['inheritance/deriative'];
+      console.log('condition', values['inheritance/deriative']);
+      return values['inheritance/deriative'];
     },
+    level: 1,
     label: 'Требование к наследованию',
     value: 'inheritance required',
     type: 'radio',

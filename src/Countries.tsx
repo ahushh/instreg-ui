@@ -66,12 +66,16 @@ export class Countries extends React.Component<IProps> {
 
   get selectedCount() {
     let selected = Object.keys(this.props.values).filter(k => this.props.values[k]);
-    if (selected.find(x => x === 'АСЕАН')) {
-      selected = selected.filter(k => !this.aseanCountries.includes(k));
-    }
-    if (selected.find(x => x === 'ЕАЭС')) {
-      selected = selected.filter(k => !this.eaesCountries.includes(k));
-    }
+
+    const handleCountryGroup = (group: string[], groupValue: string) => {
+      if (selected.find(x => x === groupValue)) {
+        selected = selected.filter(k => !group.includes(k));
+      } 
+    };
+
+    handleCountryGroup(this.aseanCountries, 'АСЕАН');
+    handleCountryGroup(this.eaesCountries, 'ЕАЭС');
+
     return selected.length;
   }
 
@@ -98,10 +102,10 @@ export class Countries extends React.Component<IProps> {
   }
 
   get isValid() {
-    if (this.props.minSelected && this.props.minSelected < this.selectedCount) {
+    if (this.props.minSelected && (this.selectedCount < this.props.minSelected)) {
       return false;
     }
-    if (this.props.maxSelected && this.props.maxSelected > this.selectedCount) {
+    if (this.props.maxSelected && (this.selectedCount > this.props.maxSelected)) {
       return false;
     }
     return true;

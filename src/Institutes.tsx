@@ -26,6 +26,7 @@ export interface IInstitute {
   value: string;
   type: 'checkbox' | 'radio';
   options: IOption[];
+  level?: number;
 }
 
 export class Institutes extends React.Component<IProps> {
@@ -107,14 +108,15 @@ export class Institutes extends React.Component<IProps> {
   }
 
   render() {
-    return <div>
+    return (<div>
       <Heading size='xs'>
         Выберите характеристики института:
       </Heading>
       {this.props.institutes.map(i => {
-        return <div key={i.value} className='App__institute'>{this.renderInstitute(i)}</div>
+        return (<div key={i.value} className={'App__institute ' + (i.level ? `App__institute--level${i.level}` : '')}>
+          {this.renderInstitute(i)}
+        </div>);
       })}
-    </div>
-
+    </div>);
   }
 }
