@@ -199,19 +199,20 @@ class App extends React.Component<IProps, IState> {
 
   onInstituteChange = (institutes: IInstituteValues) => {
     let extraState: any = {};
-    if (institutes['lateralism/bilateral']) {
+    if (institutes['lateralism/bilateral'].value) {
       extraState = { minCountriesSelected: 2, maxCountriesSelected: 2 };
-    } else if (institutes['lateralism/multilateral']) {
+    } else if (institutes['lateralism/multilateral'].value) {
       extraState = { minCountriesSelected: 3, maxCountriesSelected: 0 };
     }
-    console.log("institutes['inheritance/deriative'])", institutes['inheritance/deriative']);
+    // console.log("institutes['inheritance/deriative'])", institutes['inheritance/deriative']);
     if (institutes['inheritance/deriative'].value) {
       extraState.displayMembership = true;
     } else {
       extraState.displayMembership = false;
     }
+    // console.log('extra state', institutes['lateralism/bilateral'], institutes['lateralism/multilateral']);
     this.setState({ institutes, ...extraState });
-    console.log(institutes);
+    // console.log(institutes);
 
   }
   onCountriesChange = (countries: ICountriesValues) => {

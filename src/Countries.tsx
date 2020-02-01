@@ -25,7 +25,7 @@ interface IProps {
 
 export class Countries extends React.Component<IProps> {
   aseanCountries = [
-    'Бруней',
+    'Бруней Даруссалам',
     'Вьетнам',
     'Камбоджа',
     'Лаос',
@@ -35,6 +35,7 @@ export class Countries extends React.Component<IProps> {
     'Сингапур',
     'Таиланд',
     'Филиппины',
+    
   ]
 
   eaesCountries = [
@@ -136,6 +137,7 @@ export class Countries extends React.Component<IProps> {
     </RadioGroup>);
   }
   render() {
+    console.log(this.props.minSelected, this.props.maxSelected);
     return (<div>
       <Heading size='xs'>
         Выберите страны/объединения:
