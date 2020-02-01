@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/instreg-ui/static/css/main.69490857.chunk.css",
-    "main.js": "/instreg-ui/static/js/main.4ef71843.chunk.js",
-    "main.js.map": "/instreg-ui/static/js/main.4ef71843.chunk.js.map",
+    "main.css": "/instreg-ui/static/css/main.b993134d.chunk.css",
+    "main.js": "/instreg-ui/static/js/main.55312d00.chunk.js",
+    "main.js.map": "/instreg-ui/static/js/main.55312d00.chunk.js.map",
     "runtime-main.js": "/instreg-ui/static/js/runtime-main.97778c09.js",
     "runtime-main.js.map": "/instreg-ui/static/js/runtime-main.97778c09.js.map",
     "static/css/2.07c21f8b.chunk.css": "/instreg-ui/static/css/2.07c21f8b.chunk.css",
-    "static/js/2.6eef5e01.chunk.js": "/instreg-ui/static/js/2.6eef5e01.chunk.js",
-    "static/js/2.6eef5e01.chunk.js.map": "/instreg-ui/static/js/2.6eef5e01.chunk.js.map",
+    "static/js/2.7acb8cda.chunk.js": "/instreg-ui/static/js/2.7acb8cda.chunk.js",
+    "static/js/2.7acb8cda.chunk.js.map": "/instreg-ui/static/js/2.7acb8cda.chunk.js.map",
     "index.html": "/instreg-ui/index.html",
-    "precache-manifest.b4f8e9879cea8493d727042b5cfeeb1f.js": "/instreg-ui/precache-manifest.b4f8e9879cea8493d727042b5cfeeb1f.js",
+    "precache-manifest.4aae1c25b1f1ee25b3ca17e4c2c22770.js": "/instreg-ui/precache-manifest.4aae1c25b1f1ee25b3ca17e4c2c22770.js",
     "service-worker.js": "/instreg-ui/service-worker.js",
     "static/css/2.07c21f8b.chunk.css.map": "/instreg-ui/static/css/2.07c21f8b.chunk.css.map",
-    "static/css/main.69490857.chunk.css.map": "/instreg-ui/static/css/main.69490857.chunk.css.map",
-    "static/js/2.6eef5e01.chunk.js.LICENSE": "/instreg-ui/static/js/2.6eef5e01.chunk.js.LICENSE",
+    "static/css/main.b993134d.chunk.css.map": "/instreg-ui/static/css/main.b993134d.chunk.css.map",
+    "static/js/2.7acb8cda.chunk.js.LICENSE": "/instreg-ui/static/js/2.7acb8cda.chunk.js.LICENSE",
     "static/media/arrow-down.css": "/instreg-ui/static/media/icon_arrow-down_xxl_white.9eaf2edb.svg",
     "static/media/arrow-up.css": "/instreg-ui/static/media/icon_arrow-up_xxl_white.eb5c7952.svg",
     "static/media/check-indeterminate.css": "/instreg-ui/static/media/icon_check-indeterminate_s_white.cc03cad9.svg",
@@ -24,8 +24,8 @@
   "entrypoints": [
     "static/js/runtime-main.97778c09.js",
     "static/css/2.07c21f8b.chunk.css",
-    "static/js/2.6eef5e01.chunk.js",
-    "static/css/main.69490857.chunk.css",
-    "static/js/main.4ef71843.chunk.js"
+    "static/js/2.7acb8cda.chunk.js",
+    "static/css/main.b993134d.chunk.css",
+    "static/js/main.55312d00.chunk.js"
   ]
 }
