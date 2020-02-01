@@ -137,7 +137,7 @@ export class Countries extends React.Component<IProps> {
     </RadioGroup>);
   }
   render() {
-    console.log(this.props.minSelected, this.props.maxSelected);
+    // console.log(this.props.minSelected, this.props.maxSelected);
     return (<div>
       <Heading size='xs'>
         Выберите страны/объединения:

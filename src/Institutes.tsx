@@ -58,7 +58,7 @@ export class Institutes extends React.Component<IProps> {
         const [, b] = x.split('/');
         return b !== value;
       });
-    console.log(result, checked);
+    // console.log(result, checked);
     const state = {
       ...this.props.values,
       [result]: {
@@ -75,7 +75,7 @@ export class Institutes extends React.Component<IProps> {
 
   onChangeCheckbox = (groupValue: string) => (checked: boolean, value: string) => {
     const result = this.getResultValue(groupValue, value);
-    console.log(result, checked);
+    // console.log(result, checked);
     const state = {
       ...this.props.values,
       [result]: {
@@ -91,7 +91,7 @@ export class Institutes extends React.Component<IProps> {
 
     return options.map(o => {
       const resultValue = this.getResultValue(groupValue, o.value);
-      console.log('o', o, resultValue, this.props.values[resultValue].value);
+      // console.log('o', o, resultValue, this.props.values[resultValue].value);
       if (!(o.children && this.props.values[resultValue].value)) {
         return null;
       }
@@ -123,7 +123,7 @@ export class Institutes extends React.Component<IProps> {
         <RadioGroup label={label}>
           {options.map(o => {
             const resultValue = this.getResultValue(groupValue, o.value);
-            console.log('renderRadio', this.props.values, this.props.values[resultValue], resultValue);
+            // console.log('renderRadio', this.props.values, this.props.values[resultValue], resultValue);
             return (<div key={resultValue}>
               {/* {this.props.values[this.getResultValue(groupValue, o.value)]} */}
               <Radio
@@ -145,7 +145,7 @@ export class Institutes extends React.Component<IProps> {
       <CheckboxGroup label={label}>
         {options.map(o => {
           const resultValue = this.getResultValue(groupValue, o.value);
-          console.log('renderCheckbox', this.props.values, this.props.values[resultValue], resultValue);
+          // console.log('renderCheckbox', this.props.values, this.props.values[resultValue], resultValue);
           return (
             <div key={resultValue}>
               {/* {this.props.values[resultValue]} */}

@@ -6,6 +6,8 @@ import { Countries, ICountriesValues } from './Countries';
 import './App.css';
 import { IInstitute, Institutes, IInstituteValues, generateInitialValuesForInstitutes } from './Institutes';
 
+import { Country } from '../src/entities/Country';
+
 const COUNTRIES = [
   'Австралия',
   'АСЕАН',
@@ -217,15 +219,23 @@ class App extends React.Component<IProps, IState> {
   }
   onCountriesChange = (countries: ICountriesValues) => {
     this.setState({ countries });
-    console.log(countries);
+    // console.log(countries);
   }
 
   membershipOnChange = (value: boolean, name: string) => {
-    console.log('membershipOnChange', value, name);
+    // console.log('membershipOnChange', value, name);
     this.setState({ membership: { ...this.state.membership, [name]: value } });
   }
 
+  get selectedCountries() {
+    return Object.keys(this.state.countries)
+    .filter(k => (this.state.countries as ICountriesValues)[k] as boolean);
+  }
+
   render() {
+    const c = Country.create('Австралия');
+    console.log(this.selectedCountries);
+
     return (
       <div className="App">
         <div className="App__institutes">
