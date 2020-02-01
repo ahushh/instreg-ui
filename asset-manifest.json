@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/instreg-ui/static/css/main.69490857.chunk.css",
-    "main.js": "/instreg-ui/static/js/main.e25e9fb4.chunk.js",
-    "main.js.map": "/instreg-ui/static/js/main.e25e9fb4.chunk.js.map",
+    "main.js": "/instreg-ui/static/js/main.4ef71843.chunk.js",
+    "main.js.map": "/instreg-ui/static/js/main.4ef71843.chunk.js.map",
     "runtime-main.js": "/instreg-ui/static/js/runtime-main.97778c09.js",
     "runtime-main.js.map": "/instreg-ui/static/js/runtime-main.97778c09.js.map",
     "static/css/2.07c21f8b.chunk.css": "/instreg-ui/static/css/2.07c21f8b.chunk.css",
     "static/js/2.6eef5e01.chunk.js": "/instreg-ui/static/js/2.6eef5e01.chunk.js",
     "static/js/2.6eef5e01.chunk.js.map": "/instreg-ui/static/js/2.6eef5e01.chunk.js.map",
     "index.html": "/instreg-ui/index.html",
-    "precache-manifest.36c17f9a86923c29c2bdfc72be7374dc.js": "/instreg-ui/precache-manifest.36c17f9a86923c29c2bdfc72be7374dc.js",
+    "precache-manifest.b4f8e9879cea8493d727042b5cfeeb1f.js": "/instreg-ui/precache-manifest.b4f8e9879cea8493d727042b5cfeeb1f.js",
     "service-worker.js": "/instreg-ui/service-worker.js",
     "static/css/2.07c21f8b.chunk.css.map": "/instreg-ui/static/css/2.07c21f8b.chunk.css.map",
     "static/css/main.69490857.chunk.css.map": "/instreg-ui/static/css/main.69490857.chunk.css.map",
@@ -26,6 +26,6 @@
     "static/css/2.07c21f8b.chunk.css",
     "static/js/2.6eef5e01.chunk.js",
     "static/css/main.69490857.chunk.css",
-    "static/js/main.e25e9fb4.chunk.js"
+    "static/js/main.4ef71843.chunk.js"
   ]
 }
