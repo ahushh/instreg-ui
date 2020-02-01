@@ -7,6 +7,7 @@ import './App.css';
 import { IInstitute, Institutes, IInstituteValues, generateInitialValuesForInstitutes } from './Institutes';
 
 import { Country } from '../src/entities/Country';
+import { Advocacy } from './entities/Advocacy';
 
 const COUNTRIES = [
   'Австралия',
@@ -59,6 +60,12 @@ const ADVOCACY: IInstitute = {
 };
 
 const OPENNESS: IInstitute = {
+  condition: (props: any) => {
+    const { length } =  props.countriesValues && Object.keys(props.countriesValues)
+      .filter(k => (props.countriesValues as ICountriesValues)[k] as boolean);
+
+      return length >= 3;  
+  },
   label: 'Открытость',
   value: 'openness',
   type: 'radio',
@@ -228,13 +235,38 @@ class App extends React.Component<IProps, IState> {
   }
 
   get selectedCountries() {
+    // TODO: АСЕаН
     return Object.keys(this.state.countries)
     .filter(k => (this.state.countries as ICountriesValues)[k] as boolean);
   }
 
+  get selectedInstitutes() {
+    console.log('institutes', this.state.institutes);
+    return Object.keys(this.state.institutes)
+      .filter((k: string) => {
+        const { value, children } = (this.state.institutes as IInstituteValues)[k];
+        if (value || children) {
+          return true;  
+        }
+        return false;
+      });  
+  }
+
   render() {
-    const c = Country.create('Австралия');
-    console.log(this.selectedCountries);
+    console.log('this.selectedInstitutes', this.selectedInstitutes);
+    // console.log('this.selectedCountries', this.selectedCountries);
+    const countriesRaw = Country.createList(this.selectedCountries);
+    console.log('countriesRaw', countriesRaw);
+
+    const opennessInstitute: any = Object.keys(this.state.institutes)
+      .find(k => k === 'openness/closed regionalism');
+
+      console.log('opennessInstitute', (this.state.institutes as any)[opennessInstitute] , this.state);
+
+      if (opennessInstitute && (opennessInstitute as any).value && (opennessInstitute as any).children){
+        const advocacy = Advocacy.create(this.selectedInstitutes, countriesRaw);
+        console.log(advocacy);
+      } 
 
     return (
       <div className="App">
@@ -243,6 +275,7 @@ class App extends React.Component<IProps, IState> {
             Выберите характеристики института:
           </Heading>
           <Institutes
+            countriesValues={this.state.countries}
             institutes={this.institutes}
             onChange={this.onInstituteChange}
             values={this.state.institutes}

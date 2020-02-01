@@ -27,4 +27,8 @@ export class Country {
 
     return country;
   }
+
+  static createList(countries: string[]) {
+    return countries.map(x => Country.create(x));
+  }
 }

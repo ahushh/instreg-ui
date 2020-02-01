@@ -3,6 +3,7 @@ import RadioGroup from 'arui-feather/radio-group';
 import Radio from 'arui-feather/radio';
 import Checkbox from 'arui-feather/checkbox';
 import CheckboxGroup from 'arui-feather/checkbox-group';
+import { ICountriesValues } from './Countries';
 
 const LEVEL_MARGIN = 20;
 const LEVEL_PADDING = 5;
@@ -23,6 +24,7 @@ interface IProps {
   institutes: IInstitute[];
   onChange: (values: IInstituteValues) => void;
   level: number;
+  countriesValues: ICountriesValues;
 }
 
 export interface IOption {
@@ -113,6 +115,7 @@ export class Institutes extends React.Component<IProps> {
         institutes={o.children()}
         onChange={onChange}
         level={ this.props.level + 1}
+        countriesValues={ this.props.countriesValues }
       />);
     });
   }
@@ -163,7 +166,7 @@ export class Institutes extends React.Component<IProps> {
   }
 
   renderInstitute = (institute: IInstitute, parent?: IInstitute) => {
-    if (institute.condition && !institute.condition(this.props.values)) {
+    if (institute.condition && !institute.condition(this.props)) {
       return null;
     }
 
