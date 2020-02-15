@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d8beab1845e59365d111209943796b1d",
+    "revision": "8a3d5d86403c614ac7258deeebb75679",
     "url": "/instreg-ui/index.html"
   },
   {
-    "revision": "305622edf04fbde4399a",
+    "revision": "bae7eddb71ea199a7174",
     "url": "/instreg-ui/static/css/2.14a8d101.chunk.css"
   },
   {
-    "revision": "43afebf9ecf122267efc",
+    "revision": "d655929c03f6c36bea44",
     "url": "/instreg-ui/static/css/main.37850ac1.chunk.css"
   },
   {
-    "revision": "305622edf04fbde4399a",
-    "url": "/instreg-ui/static/js/2.de3c357a.chunk.js"
+    "revision": "bae7eddb71ea199a7174",
+    "url": "/instreg-ui/static/js/2.32e49eda.chunk.js"
   },
   {
     "revision": "e928fe768baa9832b5bc57eae021f30c",
-    "url": "/instreg-ui/static/js/2.de3c357a.chunk.js.LICENSE"
+    "url": "/instreg-ui/static/js/2.32e49eda.chunk.js.LICENSE"
   },
   {
-    "revision": "43afebf9ecf122267efc",
-    "url": "/instreg-ui/static/js/main.c6958b24.chunk.js"
+    "revision": "d655929c03f6c36bea44",
+    "url": "/instreg-ui/static/js/main.5e5899ec.chunk.js"
   },
   {
     "revision": "8b9018de875fdca8ef99",
