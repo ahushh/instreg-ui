@@ -8,7 +8,7 @@ import './App.css';
 import { InstitutesComponent, IInstituteValues, generateInitialValuesForInstitutes } from './components/Institutes';
 
 import {
-  BrowserRouter as Router,
+  HashRouter,
   Switch,
   Route,
   Link,
@@ -117,8 +117,8 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
     // } 
 
     return (
-      <Router>
-        <Switch>
+      <HashRouter basename='/'>
+      <Switch>
           <Route exact path="/">
             <form className="App">
               <div className="App__institutes">
@@ -159,7 +159,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
             />
           </Route>
         </Switch>
-      </Router>
+      </HashRouter>
 
     );
   }
