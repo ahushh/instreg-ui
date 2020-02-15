@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/instreg-ui/static/css/main.b993134d.chunk.css",
-    "main.js": "/instreg-ui/static/js/main.55312d00.chunk.js",
-    "main.js.map": "/instreg-ui/static/js/main.55312d00.chunk.js.map",
+    "main.css": "/instreg-ui/static/css/main.37850ac1.chunk.css",
+    "main.js": "/instreg-ui/static/js/main.c6958b24.chunk.js",
+    "main.js.map": "/instreg-ui/static/js/main.c6958b24.chunk.js.map",
     "runtime-main.js": "/instreg-ui/static/js/runtime-main.97778c09.js",
     "runtime-main.js.map": "/instreg-ui/static/js/runtime-main.97778c09.js.map",
-    "static/css/2.07c21f8b.chunk.css": "/instreg-ui/static/css/2.07c21f8b.chunk.css",
-    "static/js/2.7acb8cda.chunk.js": "/instreg-ui/static/js/2.7acb8cda.chunk.js",
-    "static/js/2.7acb8cda.chunk.js.map": "/instreg-ui/static/js/2.7acb8cda.chunk.js.map",
+    "static/css/2.14a8d101.chunk.css": "/instreg-ui/static/css/2.14a8d101.chunk.css",
+    "static/js/2.de3c357a.chunk.js": "/instreg-ui/static/js/2.de3c357a.chunk.js",
+    "static/js/2.de3c357a.chunk.js.map": "/instreg-ui/static/js/2.de3c357a.chunk.js.map",
     "index.html": "/instreg-ui/index.html",
-    "precache-manifest.4aae1c25b1f1ee25b3ca17e4c2c22770.js": "/instreg-ui/precache-manifest.4aae1c25b1f1ee25b3ca17e4c2c22770.js",
+    "precache-manifest.338a90be5bb3c789ab1104234f1f3a1b.js": "/instreg-ui/precache-manifest.338a90be5bb3c789ab1104234f1f3a1b.js",
     "service-worker.js": "/instreg-ui/service-worker.js",
-    "static/css/2.07c21f8b.chunk.css.map": "/instreg-ui/static/css/2.07c21f8b.chunk.css.map",
-    "static/css/main.b993134d.chunk.css.map": "/instreg-ui/static/css/main.b993134d.chunk.css.map",
-    "static/js/2.7acb8cda.chunk.js.LICENSE": "/instreg-ui/static/js/2.7acb8cda.chunk.js.LICENSE",
+    "static/css/2.14a8d101.chunk.css.map": "/instreg-ui/static/css/2.14a8d101.chunk.css.map",
+    "static/css/main.37850ac1.chunk.css.map": "/instreg-ui/static/css/main.37850ac1.chunk.css.map",
+    "static/js/2.de3c357a.chunk.js.LICENSE": "/instreg-ui/static/js/2.de3c357a.chunk.js.LICENSE",
     "static/media/arrow-down.css": "/instreg-ui/static/media/icon_arrow-down_xxl_white.9eaf2edb.svg",
     "static/media/arrow-up.css": "/instreg-ui/static/media/icon_arrow-up_xxl_white.eb5c7952.svg",
     "static/media/check-indeterminate.css": "/instreg-ui/static/media/icon_check-indeterminate_s_white.cc03cad9.svg",
@@ -23,9 +23,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.97778c09.js",
-    "static/css/2.07c21f8b.chunk.css",
-    "static/js/2.7acb8cda.chunk.js",
-    "static/css/main.b993134d.chunk.css",
-    "static/js/main.55312d00.chunk.js"
+    "static/css/2.14a8d101.chunk.css",
+    "static/js/2.de3c357a.chunk.js",
+    "static/css/main.37850ac1.chunk.css",
+    "static/js/main.c6958b24.chunk.js"
   ]
 }
