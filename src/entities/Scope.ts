@@ -1,3 +1,5 @@
+import { IInstituteValues } from '../Institutes';
+
 export class Scope {
   name = 'scope';
   public value: number = 0;
@@ -11,22 +13,22 @@ export class Scope {
    * or both presented in options variable.
    *
    */
-  static create(options: string[]) {
+  static create(institutes: IInstituteValues) {
     const scope = new Scope();
 
     if (
-      options.includes('scope/economie') && options.includes('scope/military-political')
+      institutes['scope/economie'].value && institutes['scope/military-political'].value
       ) {
       scope.value = 0.1;
       return scope;
     }
 
-    if (options.includes('scope/economie')) {
+    if (institutes['scope/economie'].value) {
       scope.value = 0.7;
       return scope;
     }
 
-    if (options.includes('scope/military-political')) {
+    if (institutes['scope/military-political'].value) {
       scope.value = 0.3
       return scope;
     }

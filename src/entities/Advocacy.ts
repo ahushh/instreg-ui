@@ -1,10 +1,10 @@
 import { Country } from './Country';
-import { ICountriesValues } from '../Countries';
-import { IInstitute } from '../Institutes';
+import { IInstituteValues } from '../Institutes';
 
 export class Advocacy {
   name = 'advocacy';
   value: number = 0;
+  finalModifier = (x: any) => x;
 
   /**
    *  value: 'advocacy',
@@ -50,8 +50,7 @@ export class Advocacy {
       return;
     // ## Случай 3
     } if (Advocacy.getFiltered(0.4, property, countries, true).length === countries.length) {
-      // TODO: 
-      // учитывать значение в финальной формуле
+      advocacy.finalModifier = x => x / 2;
       advocacy.value = 0.1;
       return;
     // ## Случай 4
@@ -67,21 +66,24 @@ export class Advocacy {
     }
   }
 
-  static create(options: string[], countries: Country[]) {
+  static create(institutes: IInstituteValues, countriesEntities: Country[]) {
     const advocacy = new Advocacy();
     let property: any = '';
 
-    if (options.includes('advocacy/thalassocratic')) {
+    if (institutes['advocacy/thalassocratic'].value) {
       property = 'advocacy_thal';
-      advocacy.handleCase(property, countries, advocacy);
+      advocacy.handleCase(property, countriesEntities, advocacy);
 
-    } else if (options.includes('advocacy/tellorocratic')) {
+    } else if (institutes['advocacy/tellorocratic'].value) {
       property = 'advocacy_tel';
-      advocacy.handleCase(property, countries, advocacy);
+      advocacy.handleCase(property, countriesEntities, advocacy);
 
-    } else if (options.includes('advocacy/none (independent)')) {
+    } else if (institutes['advocacy/none (independent)'].value) {
       property = 'advocacy_ind';
-      advocacy.handleCase(property, countries, advocacy);
+      advocacy.handleCase(property, countriesEntities, advocacy);
+
+    } else {
+      throw new Error('unexpected value');
     }
 
     return advocacy;

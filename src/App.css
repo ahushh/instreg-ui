@@ -3,6 +3,11 @@
   flex-direction: row;
 }
 
+.App__submit {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 .App__countries {
   display: flex;
   width: 50%;

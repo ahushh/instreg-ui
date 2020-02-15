@@ -1,4 +1,5 @@
 import { Advocacy } from './Advocacy';
+import { IInstituteValues } from '../Institutes';
 
 
 
@@ -22,13 +23,15 @@ import { Advocacy } from './Advocacy';
 export class Openness {
   name = 'openness';
   public value = 0;
-  static create(options: string[], advocacy: Advocacy) {
+  static create(options: IInstituteValues, advocacy: Advocacy) {
     const openness = new Openness();
 
-    if (options.includes('open regionalism')) {
+    if (options['open regionalism'].value) {
       openness.value = 0.5;
-    } else {
+    } else if (options['closed regionalism']) {
       return (0.5 + advocacy.value) / 2;
+    } else {
+      throw new Error('unexpected value');
     }
 
     return openness;

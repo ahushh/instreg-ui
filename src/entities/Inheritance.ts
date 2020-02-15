@@ -14,6 +14,11 @@
 //   ]
 // };
 import { IInstituteValues } from '../Institutes';
+import { ICountriesValues } from '../Countries';
+import { Scope } from './Scope';
+import { Commitment } from './Commitment';
+import { Uniqueness } from './Uniqueness';
+import { InheritanceRequired } from './InheritanceRequired';
 export class Inheritance {
   /**
    *
@@ -24,13 +29,16 @@ export class Inheritance {
   inheritance = 'inheritance';
   constructor(public value: number) {}
 
-  static create(options: IInstituteValues, inheritanceRequired: any) {
+  static create(institutes: IInstituteValues, countries: ICountriesValues, membership: ICountriesValues) {
     const inheritance = new Inheritance(0);
-    if (options['inheritance/new'].value) {
-      inheritance.value = 0.5;
-      return inheritance;
+    if (institutes['inheritance/new'].value) {
+      inheritance.value = 0.4;
+    } else if (institutes['inheritance/deriative'].value) {
+        const { children } = institutes['inheritance/deriative'];
+        inheritance.value = InheritanceRequired.create(children || {}, countries, membership).value;
     } else {
-
+        throw new Error('unexpected value')
     }
+    return inheritance;
   }
 }

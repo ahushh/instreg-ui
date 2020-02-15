@@ -41,7 +41,7 @@ export interface IInstitute {
   options: IOption[];
 }
 
-export class Institutes extends React.Component<IProps> {
+export class InstitutesComponent extends React.Component<IProps> {
   static defaultProps = {
     level: 0
   }
@@ -110,7 +110,7 @@ export class Institutes extends React.Component<IProps> {
         };
         this.props.onChange(state);
       };
-      return (<Institutes
+      return (<InstitutesComponent
         values={this.props.values[resultValue].children as IInstituteValues}
         institutes={o.children()}
         onChange={onChange}

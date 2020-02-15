@@ -1,13 +1,23 @@
 import React from 'react';
 import Heading from 'arui-feather/heading';
+import Button from 'arui-feather/button';
 
-import { Countries, ICountriesValues } from './Countries';
+import { CountriesComponent, ICountriesValues } from './Countries';
 
 import './App.css';
-import { IInstitute, Institutes, IInstituteValues, generateInitialValuesForInstitutes } from './Institutes';
+import { IInstitute, InstitutesComponent, IInstituteValues, generateInitialValuesForInstitutes } from './Institutes';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  RouteProps
+} from 'react-router-dom';
 
 import { Country } from '../src/entities/Country';
 import { Advocacy } from './entities/Advocacy';
+import { ResultComponent } from './Result';
 
 const COUNTRIES = [
   'Австралия',
@@ -32,7 +42,7 @@ const COUNTRIES = [
   'Монголия',
   'Мьянма',
   'Новая Зеландия',
-  'Острова Кука',
+  // 'Острова Кука',
   'Пакистан',
   'Папуа-Новая Гвинея',
   'Перу',
@@ -61,10 +71,11 @@ const ADVOCACY: IInstitute = {
 
 const OPENNESS: IInstitute = {
   condition: (props: any) => {
-    const { length } =  props.countriesValues && Object.keys(props.countriesValues)
+    // TODO: неправильно считается количество выбраных стран с АСЕАН - сделать различие между 
+    const { length } = props.countriesValues && Object.keys(props.countriesValues)
       .filter(k => (props.countriesValues as ICountriesValues)[k] as boolean);
 
-      return length >= 3;  
+    return length >= 3;
   },
   label: 'Открытость',
   value: 'openness',
@@ -192,8 +203,9 @@ interface IState {
   maxCountriesSelected: number;
   displayMembership: boolean;
   membership: ICountriesValues;
+  isValid: boolean;
 }
-class App extends React.Component<IProps, IState> {
+class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState> {
   countries = COUNTRIES;
   institutes = INSTITUTES;
 
@@ -204,6 +216,7 @@ class App extends React.Component<IProps, IState> {
     maxCountriesSelected: 0,
     membership: this.countries.reduce((a, c) => ({ ...a, [c]: false }), {}),
     displayMembership: false,
+    isValid: false
   }
 
   onInstituteChange = (institutes: IInstituteValues) => {
@@ -237,7 +250,7 @@ class App extends React.Component<IProps, IState> {
   get selectedCountries() {
     // TODO: АСЕаН
     return Object.keys(this.state.countries)
-    .filter(k => (this.state.countries as ICountriesValues)[k] as boolean);
+      .filter(k => (this.state.countries as ICountriesValues)[k] as boolean);
   }
 
   get selectedInstitutes() {
@@ -246,56 +259,75 @@ class App extends React.Component<IProps, IState> {
       .filter((k: string) => {
         const { value, children } = (this.state.institutes as IInstituteValues)[k];
         if (value || children) {
-          return true;  
+          return true;
         }
         return false;
-      });  
+      });
   }
 
   render() {
-    console.log('this.selectedInstitutes', this.selectedInstitutes);
-    // console.log('this.selectedCountries', this.selectedCountries);
-    const countriesRaw = Country.createList(this.selectedCountries);
-    console.log('countriesRaw', countriesRaw);
+    // console.log('this.selectedInstitutes', this.selectedInstitutes);
+    // // console.log('this.selectedCountries', this.selectedCountries);
+    // const countriesRaw = Country.createList(this.selectedCountries);
+    // console.log('countriesRaw', countriesRaw);
 
-    const opennessInstitute: any = Object.keys(this.state.institutes)
-      .find(k => k === 'openness/closed regionalism');
+    // const opennessInstitute: any = Object.keys(this.state.institutes)
+    //   .find(k => k === 'openness/closed regionalism');
 
-      console.log('opennessInstitute', (this.state.institutes as any)[opennessInstitute] , this.state);
+    // console.log('opennessInstitute', (this.state.institutes as any)[opennessInstitute] , this.state);
 
-      if (opennessInstitute && (opennessInstitute as any).value && (opennessInstitute as any).children){
-        const advocacy = Advocacy.create(this.selectedInstitutes, countriesRaw);
-        console.log(advocacy);
-      } 
+    // if (opennessInstitute && (opennessInstitute as any).value && (opennessInstitute as any).children){
+    //   const advocacy = Advocacy.create(this.selectedInstitutes, countriesRaw);
+    //   console.log(advocacy);
+    // } 
 
     return (
-      <div className="App">
-        <div className="App__institutes">
-          <Heading size='xs'>
-            Выберите характеристики института:
-          </Heading>
-          <Institutes
-            countriesValues={this.state.countries}
-            institutes={this.institutes}
-            onChange={this.onInstituteChange}
-            values={this.state.institutes}
-          />
-        </div>
-        <div className="App__countries">
-          <Countries
-            countries={this.countries}
-            onChange={this.onCountriesChange}
-            values={this.state.countries}
-            minSelected={this.state.minCountriesSelected}
-            maxSelected={this.state.maxCountriesSelected}
-            membershipValue={this.state.membership}
-            displayMembership={this.state.displayMembership}
-            membershipOnChange={this.membershipOnChange}
-          />
-        </div>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <div className="App">
+              <div className="App__institutes">
+                <Heading size='xs'>
+                  Выберите характеристики института:
+                </Heading>
+                <InstitutesComponent
+                  countriesValues={this.state.countries}
+                  institutes={this.institutes}
+                  onChange={this.onInstituteChange}
+                  values={this.state.institutes}
+                />
+              </div>
+              <div className="App__countries">
+                <CountriesComponent
+                  countries={this.countries}
+                  onChange={this.onCountriesChange}
+                  values={this.state.countries}
+                  minSelected={this.state.minCountriesSelected}
+                  maxSelected={this.state.maxCountriesSelected}
+                  membershipValue={this.state.membership}
+                  displayMembership={this.state.displayMembership}
+                  membershipOnChange={this.membershipOnChange}
+                />
+              </div>
+              <div className='App__submit'>
+                <Button width='available' size='xl' view='extra' disabled={!this.state.isValid}>
+                  <Link to='/result'>Calculate</Link>
+                </Button>
+              </div>
+            </div>
+          </Route>
+          <Route path='/result'>
+            <ResultComponent 
+              countries={this.state.countries}
+              institutes={this.state.institutes}
+              membership={this.state.membership}
+            />
+          </Route>
+        </Switch>
+      </Router>
+
     );
   }
 }
 
-export default App;
+export default AppComponent;

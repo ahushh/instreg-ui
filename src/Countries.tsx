@@ -23,7 +23,7 @@ interface IProps {
   membershipOnChange: (value: boolean, name: string) => void;
 }
 
-export class Countries extends React.Component<IProps> {
+export class CountriesComponent extends React.Component<IProps> {
   aseanCountries = [
     'Бруней Даруссалам',
     'Вьетнам',
