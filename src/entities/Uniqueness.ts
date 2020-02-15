@@ -33,7 +33,6 @@ export class Uniqueness {
     const uniqueness = new Uniqueness();
     if (institutes['uniqueness/unique'].value) {
       uniqueness.value = 0.35;
-      return uniqueness;
     } else if (institutes['uniqueness/alternative'].value) {
       const { children = {} } = institutes['uniqueness/alternative'];
       uniqueness.value = 0.6 + Scope.create(children).value 

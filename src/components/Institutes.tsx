@@ -186,7 +186,7 @@ export class InstitutesComponent extends React.Component<IProps> {
 
   render() {
     const style = { 
-      marginLeft: `${this.props.level * (LEVEL_MARGIN)}px`,
+      marginLeft: `${this.props.level * LEVEL_MARGIN}px`,
       paddingLeft: `${LEVEL_PADDING}px`,
       marginTop: `${this.props.level * LEVEL_PADDING}px`,
       borderLeft: this.props.level ? '1px solid #aaaa' : 'none',

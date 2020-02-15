@@ -7,11 +7,11 @@ export class Commitment {
   static create(institutes: IInstituteValues) {
     const commitment = new Commitment();
 
-    if (institutes['non-regulatory'].value) {
+    if (institutes['commitment/non-regulatory'].value) {
       commitment.value = 0.4;
       return commitment;
     }
-    if (institutes['regulatory'].value) {
+    if (institutes['commitment/regulatory'].value) {
       commitment.value = 0.6;
       return commitment;
     }

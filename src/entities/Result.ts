@@ -23,7 +23,6 @@ export class Result {
     const selectedCountriesNames = Object.keys(this.countries)
       .filter(k => (this.countries as ICountriesValues)[k] as boolean);
     const countriesEntities = Country.createList(selectedCountriesNames);
-    const advocacy = Advocacy.create(this.institutes, countriesEntities)
 
     const scope = Scope.create(this.institutes);
     const lateralism = Lateralism.create(this.institutes);
@@ -31,8 +30,6 @@ export class Result {
     const uniqueness = Uniqueness.create(this.institutes, this.countries, this.membership);
     const inheritance = Inheritance.create(this.institutes, this.countries, this.membership);
     const affinity = Affinity.create(countriesEntities);
-
-    const openness = Openness.create(this.institutes, advocacy);
 
     const calculate = (a: any[]) => a.map(x => x.value).reduce((a, c) => a + c, 0) / a.length;
 
@@ -47,6 +44,9 @@ export class Result {
       ];
       return calculate(arr);
     } else if (this.institutes['laterlaism/multilateral'].value) {
+      const advocacy = Advocacy.create(this.institutes, countriesEntities)
+      const openness = Openness.create(this.institutes, advocacy);
+
       const arr = [
         scope,
         lateralism,

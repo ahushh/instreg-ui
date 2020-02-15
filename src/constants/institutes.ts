@@ -103,7 +103,7 @@ export const INHERITANCE_REQUIRED: IInstitute = {
 
 export const UNIQNESS: IInstitute = {
   label: 'Уникальность',
-  value: 'uniqness',
+  value: 'uniqueness',
   type: 'radio',
   options: [
     {

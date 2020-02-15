@@ -49,7 +49,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
     maxCountriesSelected: 0,
     membership: this.countries.reduce((a, c) => ({ ...a, [c]: false }), {}),
     displayMembership: false,
-    isValid: false
+    isValid: true
   }
 
   onInstituteChange = (institutes: IInstituteValues) => {
@@ -66,6 +66,8 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
       extraState.displayMembership = false;
     }
     // console.log('extra state', institutes['lateralism/bilateral'], institutes['lateralism/multilateral']);
+    // const isValid = Object.values(this.state.institutes).filter((x: any) => x.value).length === 
+    //   this.institutes.filter((x: any) => !x.condition || x.condition({ countriesValues: this.state.countries })).length;
     this.setState({ institutes, ...extraState });
     // console.log(institutes);
 
@@ -118,7 +120,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
       <Router>
         <Switch>
           <Route exact path="/">
-            <div className="App">
+            <form className="App">
               <div className="App__institutes">
                 <Heading size='xs'>
                   Выберите характеристики института:
@@ -147,7 +149,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
                   <Link to='/result'>Calculate</Link>
                 </Button>
               </div>
-            </div>
+            </form>
           </Route>
           <Route path='/result'>
             <ResultComponent 
