@@ -7,6 +7,7 @@ import IconError from 'arui-feather/icon/ui/error';
 import Heading from 'arui-feather/heading';
 import RadioGroup from 'arui-feather/radio-group';
 import Radio from 'arui-feather/radio';
+import { ASEAN_COUNTRIES, EAES_COUNTRIES } from '../constants/countries';
 
 export interface ICountriesValues {
   [k: string]: boolean;
@@ -24,23 +25,9 @@ interface IProps {
 }
 
 export class CountriesComponent extends React.Component<IProps> {
-  aseanCountries = [
-    'Бруней Даруссалам',
-    'Вьетнам',
-    'Камбоджа',
-    'Лаос',
-    'Индонезия',
-    'Малайзия',
-    'Мьянма',
-    'Сингапур',
-    'Таиланд',
-    'Филиппины',
-    
-  ]
+  aseanCountries = ASEAN_COUNTRIES;
 
-  eaesCountries = [
-    'Россия'
-  ]
+  eaesCountries = EAES_COUNTRIES;
 
   countriesOptions = this.props.countries.map(name => ({ text: name, value: name }));
 

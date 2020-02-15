@@ -1,5 +1,5 @@
 import { Country } from './Country';
-import { IInstituteValues } from '../Institutes';
+import { IInstituteValues } from '../components/Institutes';
 
 export class Advocacy {
   name = 'advocacy';

@@ -2,7 +2,7 @@ import React from 'react';
 import { IInstituteValues } from './Institutes';
 import { ICountriesValues } from './Countries';
 import { RouterProps } from 'react-router';
-import { Result } from './entities/Result';
+import { Result } from '../entities/Result';
 
 interface IProps {
   institutes: IInstituteValues,

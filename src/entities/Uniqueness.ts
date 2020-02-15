@@ -1,9 +1,8 @@
-import { Advocacy } from './Advocacy';
-import { IInstituteValues } from '../Institutes';
+import { IInstituteValues } from '../components/Institutes';
 import { Scope } from './Scope';
 import { Commitment } from './Commitment';
 import { Inheritance } from './Inheritance';
-import { ICountriesValues } from '../Countries';
+import { ICountriesValues } from '../components/Countries';
 
 
 

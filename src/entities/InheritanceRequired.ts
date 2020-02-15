@@ -1,8 +1,8 @@
-import { IInstituteValues } from '../Institutes';
+import { IInstituteValues } from '../components/Institutes';
 import { Scope } from './Scope';
 import { Commitment } from './Commitment';
 import { Uniqueness } from './Uniqueness';
-import { ICountriesValues } from '../Countries';
+import { ICountriesValues } from '../components/Countries';
 
 
 export class InheritanceRequired {

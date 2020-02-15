@@ -13,11 +13,8 @@
 //     }
 //   ]
 // };
-import { IInstituteValues } from '../Institutes';
-import { ICountriesValues } from '../Countries';
-import { Scope } from './Scope';
-import { Commitment } from './Commitment';
-import { Uniqueness } from './Uniqueness';
+import { IInstituteValues } from '../components/Institutes';
+import { ICountriesValues } from '../components/Countries';
 import { InheritanceRequired } from './InheritanceRequired';
 export class Inheritance {
   /**

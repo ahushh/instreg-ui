@@ -2,10 +2,10 @@ import React from 'react';
 import Heading from 'arui-feather/heading';
 import Button from 'arui-feather/button';
 
-import { CountriesComponent, ICountriesValues } from './Countries';
+import { CountriesComponent, ICountriesValues } from './components/Countries';
 
 import './App.css';
-import { IInstitute, InstitutesComponent, IInstituteValues, generateInitialValuesForInstitutes } from './Institutes';
+import { InstitutesComponent, IInstituteValues, generateInitialValuesForInstitutes } from './components/Institutes';
 
 import {
   BrowserRouter as Router,
@@ -15,176 +15,9 @@ import {
   RouteProps
 } from 'react-router-dom';
 
-import { Country } from '../src/entities/Country';
-import { Advocacy } from './entities/Advocacy';
-import { ResultComponent } from './Result';
-
-const COUNTRIES = [
-  'Австралия',
-  'АСЕАН',
-  'Бангладеш',
-  'Бруней Даруссалам',
-  'Восточный Тимор',
-  'Вьетнам',
-  'Гонконг',
-  'ЕАЭС',
-  'Евросоюз',
-  'Индия',
-  'Индонезия',
-  'Камбоджа',
-  'Канада',
-  'Китай',
-  'КНДР',
-  'Лаос',
-  'Макао',
-  'Малайзия',
-  'Мексика',
-  'Монголия',
-  'Мьянма',
-  'Новая Зеландия',
-  // 'Острова Кука',
-  'Пакистан',
-  'Папуа-Новая Гвинея',
-  'Перу',
-  'Республика Корея',
-  'Россия',
-  'Сингапур',
-  'США',
-  'Тайвань',
-  'Таиланд',
-  'Филиппины',
-  'Чили',
-  'Шри-Ланка',
-  'Япония'
-];
-
-const ADVOCACY: IInstitute = {
-  label: 'Поддержка аттрактора',
-  value: 'advocacy',
-  type: 'radio',
-  options: [
-    { label: 'талассократ', value: 'thalassocratic' },
-    { label: 'теллурократия', value: 'tellorocratic' },
-    { label: 'нет (независимый)', value: 'none (independent)' }
-  ]
-};
-
-const OPENNESS: IInstitute = {
-  condition: (props: any) => {
-    // TODO: неправильно считается количество выбраных стран с АСЕАН - сделать различие между 
-    const { length } = props.countriesValues && Object.keys(props.countriesValues)
-      .filter(k => (props.countriesValues as ICountriesValues)[k] as boolean);
-
-    return length >= 3;
-  },
-  label: 'Открытость',
-  value: 'openness',
-  type: 'radio',
-  options: [
-    { label: 'открытый регионализм', value: 'open regionalism' },
-    {
-      label: 'закрытый регионализм',
-      value: 'closed regionalism',
-      children: () => [
-        ADVOCACY
-      ]
-    }
-  ]
-};
-
-const SCOPE: IInstitute = {
-  label: 'Сфера деятельности',
-  value: 'scope',
-  type: 'checkbox',
-  options: [
-    { label: 'экономическая', value: 'economie' },
-    { label: 'военнно-политическая', value: 'military-political' }
-  ]
-};
-const LATERALISM: IInstitute = {
-  label: 'Латеральность',
-  value: 'lateralism',
-  type: 'radio',
-  options: [
-    { label: 'двухсторонний', value: 'bilateral' },
-    { label: 'многосторонний', value: 'multilateral' }
-  ]
-};
-
-const COMMITMENT: IInstitute = {
-  label: 'Степень обязательства',
-  value: 'commitment',
-  type: 'radio',
-  options: [
-    { label: 'рекомендательный', value: 'non-regulatory' },
-    { label: 'обязывающий', value: 'regulatory' }
-  ]
-};
-
-const INHERITANCE: IInstitute = {
-  label: 'Наследование',
-  value: 'inheritance',
-  type: 'radio',
-  options: [
-    { label: 'новый', value: 'new' },
-    {
-      label: 'производный',
-      value: 'deriative',
-      children: () => [
-        INHERITANCE_REQUIRED
-      ]
-    }
-  ]
-};
-
-const INHERITANCE_REQUIRED: IInstitute = {
-  label: 'Требование к наследованию',
-  value: 'inheritance required',
-  type: 'radio',
-  options: [
-    {
-      label: 'требуется вступить в базовый',
-      value: 'yes',
-      children: () => [
-        SCOPE,
-        COMMITMENT,
-        UNIQNESS,
-        OPENNESS
-      ]
-    },
-    { label: 'не требуется', value: 'no' }
-  ]
-};
-
-
-const UNIQNESS: IInstitute = {
-  label: 'Уникальность',
-  value: 'uniqness',
-  type: 'radio',
-  options: [
-    {
-      label: 'есть альтернативный',
-      value: 'alternative',
-      children: () => [
-        SCOPE,
-        COMMITMENT,
-        INHERITANCE,
-        OPENNESS
-      ]
-    },
-    { label: 'нет альтернативного', value: 'unique' }
-  ]
-};
-
-
-const INSTITUTES: IInstitute[] = [
-  SCOPE,
-  LATERALISM,
-  COMMITMENT,
-  UNIQNESS,
-  INHERITANCE,
-  OPENNESS,
-]
+import { ResultComponent } from './components/Result';
+import { COUNTRIES } from './constants/countries';
+import { INSTITUTES } from './constants/institutes';
 
 /**
  *

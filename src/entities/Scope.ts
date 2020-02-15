@@ -1,4 +1,4 @@
-import { IInstituteValues } from '../Institutes';
+import { IInstituteValues } from '../components/Institutes';
 
 export class Scope {
   name = 'scope';

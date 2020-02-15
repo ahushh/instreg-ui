@@ -1,5 +1,5 @@
 import { Advocacy } from './Advocacy';
-import { IInstituteValues } from '../Institutes';
+import { IInstituteValues } from '../components/Institutes';
 
 
 

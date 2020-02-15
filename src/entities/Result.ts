@@ -1,5 +1,5 @@
-import { ICountriesValues } from '../Countries';
-import { IInstituteValues } from '../Institutes';
+import { ICountriesValues } from '../components/Countries';
+import { IInstituteValues } from '../components/Institutes';
 import { Country } from './Country';
 import { Scope } from './Scope';
 import { Lateralism } from './Lateralism';

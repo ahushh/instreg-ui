@@ -89,7 +89,7 @@ export class InstitutesComponent extends React.Component<IProps> {
   }
 
   renderChildren = (institute: IInstitute) => {
-    const { options, label, value: groupValue } = institute;
+    const { options, value: groupValue } = institute;
 
     return options.map(o => {
       const resultValue = this.getResultValue(groupValue, o.value);
