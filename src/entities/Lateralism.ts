@@ -9,7 +9,7 @@ export class Lateralism {
 
     if (institutes['lateralism/bilateral'].value) {
       lateralism.value = 0.8;
-    } else if (institutes['laterlaism/multilateral'].value) {
+    } else if (institutes['lateralism/multilateral'].value) {
       lateralism.value = 0.5;
     } else {
       throw new Error('unexpected value');

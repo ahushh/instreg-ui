@@ -43,7 +43,7 @@ export class Result {
         affinity
       ];
       return calculate(arr);
-    } else if (this.institutes['laterlaism/multilateral'].value) {
+    } else if (this.institutes['lateralism/multilateral'].value) {
       const advocacy = Advocacy.create(this.institutes, countriesEntities)
       const openness = Openness.create(this.institutes, advocacy);
 
