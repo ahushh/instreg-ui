@@ -17,7 +17,7 @@ import {
 
 import { ResultComponent } from './components/Result';
 import { COUNTRIES } from './constants/countries';
-import { INSTITUTES } from './constants/institutes';
+import { INSTITUTES, LATERALISM_BI, LATERALISM_MULT, INHERITANCE_DER } from './constants/institutes';
 
 /**
  *
@@ -54,13 +54,13 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
 
   onInstituteChange = (institutes: IInstituteValues) => {
     let extraState: any = {};
-    if (institutes['lateralism/bilateral'].value) {
+    if (institutes[LATERALISM_BI].value) {
       extraState = { minCountriesSelected: 2, maxCountriesSelected: 2 };
-    } else if (institutes['lateralism/multilateral'].value) {
+    } else if (institutes[LATERALISM_MULT].value) {
       extraState = { minCountriesSelected: 3, maxCountriesSelected: 0 };
     }
     // console.log("institutes['inheritance/deriative'])", institutes['inheritance/deriative']);
-    if (institutes['inheritance/deriative'].value) {
+    if (institutes[INHERITANCE_DER].value) {
       extraState.displayMembership = true;
     } else {
       extraState.displayMembership = false;
@@ -101,6 +101,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
   }
 
   render() {
+    console.log(this.state.institutes);
     // console.log('this.selectedInstitutes', this.selectedInstitutes);
     // // console.log('this.selectedCountries', this.selectedCountries);
     // const countriesRaw = Country.createList(this.selectedCountries);
@@ -118,7 +119,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
 
     return (
       <HashRouter basename='/'>
-      <Switch>
+        <Switch>
           <Route exact path="/">
             <form className="App">
               <div className="App__institutes">
@@ -145,14 +146,16 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
                 />
               </div>
               <div className='App__submit'>
-                <Button width='available' size='xl' view='extra' disabled={!this.state.isValid}>
-                  <Link to='/result'>Calculate</Link>
-                </Button>
+                <Link to='/result'>
+                  <Button width='available' size='xl' view='extra' disabled={!this.state.isValid}>
+                    Calculate
+                  </Button>
+                </Link>
               </div>
             </form>
           </Route>
           <Route path='/result'>
-            <ResultComponent 
+            <ResultComponent
               countries={this.state.countries}
               institutes={this.state.institutes}
               membership={this.state.membership}

@@ -16,6 +16,7 @@
 import { IInstituteValues } from '../components/Institutes';
 import { ICountriesValues } from '../components/Countries';
 import { InheritanceRequired } from './InheritanceRequired';
+import { INHERITANCE_NEW, INHERITANCE_DER } from '../constants/institutes';
 export class Inheritance {
   /**
    *
@@ -28,10 +29,10 @@ export class Inheritance {
 
   static create(institutes: IInstituteValues, countries: ICountriesValues, membership: ICountriesValues) {
     const inheritance = new Inheritance(0);
-    if (institutes['inheritance/new'].value) {
+    if (institutes[INHERITANCE_NEW].value) {
       inheritance.value = 0.4;
-    } else if (institutes['inheritance/deriative'].value) {
-        const { children } = institutes['inheritance/deriative'];
+    } else if (institutes[INHERITANCE_DER].value) {
+        const { children } = institutes[INHERITANCE_DER];
         inheritance.value = InheritanceRequired.create(children || {}, countries, membership).value;
     } else {
         throw new Error('unexpected value')

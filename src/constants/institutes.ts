@@ -2,6 +2,32 @@ import { IInstitute } from '../components/Institutes';
 
 import { ICountriesValues } from '../components/Countries';
 
+export const ADVOCACY_THAL = 'advocacy/thalassocratic';
+export const ADVOCACY_TEL = 'advocacy/tellorocratic';
+export const ADVOCACY_IND = 'advocacy/none (independent)';
+
+export const OPENNESS_OPEN = 'openness/open regionalism';
+export const OPENNESS_CLOSED = 'openness/closed regionalism';
+
+export const SCOPE_ECONOMIE = 'scope/economie';
+export const SCOPE_MILITARY = 'scope/military-political';
+
+export const LATERALISM_BI = 'lateralism/bilateral';
+export const LATERALISM_MULT = 'lateralism/multilateral';
+
+export const COMMITMENT_REG = 'commitment/regulatory';
+export const COMMITMENT_NON_REG = 'commitment/non-regulatory';
+
+export const INHERITANCE_NEW = 'inheritance/new';
+export const INHERITANCE_DER = 'inheritance/deriative';
+
+export const INHERITANCE_REQUIRED_YES = 'inheritance required/yes';
+export const INHERITANCE_REQUIRED_NO = 'inheritance required/no';
+
+export const UNIQUENESS_UNIQ = 'uniqueness/unique';
+export const UNIQUENESS_ALT = 'uniqueness/alternative';
+
+
 export const ADVOCACY: IInstitute = {
   label: 'Поддержка аттрактора',
   value: 'advocacy',

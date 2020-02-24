@@ -3,6 +3,7 @@ import { Scope } from './Scope';
 import { Commitment } from './Commitment';
 import { Inheritance } from './Inheritance';
 import { ICountriesValues } from '../components/Countries';
+import { UNIQUENESS_UNIQ, UNIQUENESS_ALT } from '../constants/institutes';
 
 
 
@@ -31,14 +32,15 @@ export class Uniqueness {
   public value = 0;
   static create(institutes: IInstituteValues, countries: ICountriesValues, membership: ICountriesValues) {
     const uniqueness = new Uniqueness();
-    if (institutes['uniqueness/unique'].value) {
+    if (institutes[UNIQUENESS_UNIQ].value) {
       uniqueness.value = 0.35;
-    } else if (institutes['uniqueness/alternative'].value) {
-      const { children = {} } = institutes['uniqueness/alternative'];
+    } else if (institutes[UNIQUENESS_ALT].value) {
+      const { children = {} } = institutes[UNIQUENESS_ALT];
       uniqueness.value = 0.6 + Scope.create(children).value 
         + Commitment.create(children).value
         + Inheritance.create(children, countries, membership).value;
     } else {
+      debugger;
       throw new Error('unexpected value')
     }
     return uniqueness;

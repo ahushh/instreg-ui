@@ -1,4 +1,5 @@
 import { IInstituteValues } from '../components/Institutes';
+import { LATERALISM_BI, LATERALISM_MULT } from '../constants/institutes';
 
 
 export class Lateralism {
@@ -7,9 +8,9 @@ export class Lateralism {
   static create(institutes: IInstituteValues) {
     const lateralism = new Lateralism();
 
-    if (institutes['lateralism/bilateral'].value) {
+    if (institutes[LATERALISM_BI].value) {
       lateralism.value = 0.8;
-    } else if (institutes['lateralism/multilateral'].value) {
+    } else if (institutes[LATERALISM_MULT].value) {
       lateralism.value = 0.5;
     } else {
       throw new Error('unexpected value');

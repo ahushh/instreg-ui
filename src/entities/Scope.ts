@@ -1,4 +1,5 @@
 import { IInstituteValues } from '../components/Institutes';
+import { SCOPE_ECONOMIE, SCOPE_MILITARY } from '../constants/institutes';
 
 export class Scope {
   name = 'scope';
@@ -17,18 +18,18 @@ export class Scope {
     const scope = new Scope();
 
     if (
-      institutes['scope/economie'].value && institutes['scope/military-political'].value
+      institutes[SCOPE_ECONOMIE].value && institutes[SCOPE_MILITARY].value
       ) {
       scope.value = 0.1;
       return scope;
     }
 
-    if (institutes['scope/economie'].value) {
+    if (institutes[SCOPE_ECONOMIE].value) {
       scope.value = 0.7;
       return scope;
     }
 
-    if (institutes['scope/military-political'].value) {
+    if (institutes[SCOPE_MILITARY].value) {
       scope.value = 0.3
       return scope;
     }

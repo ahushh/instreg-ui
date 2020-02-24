@@ -1,5 +1,6 @@
 import { Country } from './Country';
 import { IInstituteValues } from '../components/Institutes';
+import { ADVOCACY_THAL, ADVOCACY_TEL, ADVOCACY_IND } from '../constants/institutes';
 
 export class Advocacy {
   name = 'advocacy';
@@ -69,19 +70,22 @@ export class Advocacy {
   static create(institutes: IInstituteValues, countriesEntities: Country[]) {
     const advocacy = new Advocacy();
     let property: any = '';
+    
+    if (!institutes) { // open regionalism
+      return advocacy;
+    }
 
-    if (institutes['advocacy/thalassocratic'].value) {
+    if (institutes[ADVOCACY_THAL].value) {
       property = 'advocacy_thal';
       advocacy.handleCase(property, countriesEntities, advocacy);
 
-    } else if (institutes['advocacy/tellorocratic'].value) {
+    } else if (institutes[ADVOCACY_TEL].value) {
       property = 'advocacy_tel';
       advocacy.handleCase(property, countriesEntities, advocacy);
 
-    } else if (institutes['advocacy/none (independent)'].value) {
+    } else if (institutes[ADVOCACY_IND].value) {
       property = 'advocacy_ind';
       advocacy.handleCase(property, countriesEntities, advocacy);
-
     } else {
       throw new Error('unexpected value');
     }
