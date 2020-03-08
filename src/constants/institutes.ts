@@ -41,7 +41,6 @@ export const ADVOCACY: IInstitute = {
 
 export const OPENNESS: IInstitute = {
   condition: (props: any) => {
-    // TODO: неправильно считается количество выбраных стран с АСЕАН - сделать различие между 
     const { length } = props.countriesValues && Object.keys(props.countriesValues)
       .filter(k => (props.countriesValues as ICountriesValues)[k] as boolean);
 

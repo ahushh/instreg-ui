@@ -26,6 +26,14 @@ import { INSTITUTES, LATERALISM_BI, LATERALISM_MULT, INHERITANCE_DER } from './c
  *
  */
 
+const getFromLS = (key: string, elseValue: any) => {
+  const state = localStorage.getItem(key);
+  if (state) {
+    return JSON.parse(state);
+  }
+  return elseValue;
+};
+
 interface IProps {
 
 }
@@ -42,7 +50,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
   countries = COUNTRIES;
   institutes = INSTITUTES;
 
-  state = {
+  state = getFromLS('state', {
     countries: this.countries.reduce((a, c) => ({ ...a, [c]: false }), {}),
     institutes: generateInitialValuesForInstitutes(this.institutes),
     minCountriesSelected: 0,
@@ -50,7 +58,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
     membership: this.countries.reduce((a, c) => ({ ...a, [c]: false }), {}),
     displayMembership: false,
     isValid: true
-  }
+  })
 
   onInstituteChange = (institutes: IInstituteValues) => {
     let extraState: any = {};
@@ -83,7 +91,6 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
   }
 
   get selectedCountries() {
-    // TODO: АСЕаН
     return Object.keys(this.state.countries)
       .filter(k => (this.state.countries as ICountriesValues)[k] as boolean);
   }
@@ -101,6 +108,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
   }
 
   render() {
+    localStorage.setItem('state', JSON.stringify(this.state));
     console.log(this.state.institutes);
     // console.log('this.selectedInstitutes', this.selectedInstitutes);
     // // console.log('this.selectedCountries', this.selectedCountries);
@@ -123,6 +131,7 @@ class AppComponent extends React.Component<Partial<RouteProps> & IProps, IState>
           <Route exact path="/">
             <form className="App">
               <div className="App__institutes">
+                <button onClick={() => { localStorage.removeItem('state'); window.location.reload()}}>Reset</button>
                 <Heading size='xs'>
                   Выберите характеристики института:
                 </Heading>

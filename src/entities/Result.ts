@@ -35,6 +35,7 @@ export class Result {
       .filter(k => (this.countries as ICountriesValues)[k] as boolean)
   }
   calculate(): number {
+    // debugger;
     const countriesEntities = Country.createList(this.selectedCountriesNames);
 
     const scope = Scope.create(this.institutes);
@@ -89,10 +90,12 @@ export class Result {
   }
 
   private compareThalasAndTellur(thalas: number, tellur: number): { valueType: 'thalas' | 'tellur', value: string } {
+    console.log('compareThalasAndTellur:', 'thalas', thalas, 'telur', tellur);
     const full = 1.2;
     const result = Math.max(thalas, tellur) - Math.min(thalas, tellur);
     const inPercent = toPercent(result / full);
     const valueType = thalas > tellur ? 'thalas' : 'tellur';
+    console.log('compareThalasAndTellur', 'compareThalasAndTellur', valueType, inPercent);
     return { valueType, value: inPercent };
   }
 

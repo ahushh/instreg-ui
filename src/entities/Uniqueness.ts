@@ -36,9 +36,11 @@ export class Uniqueness {
       uniqueness.value = 0.35;
     } else if (institutes[UNIQUENESS_ALT].value) {
       const { children = {} } = institutes[UNIQUENESS_ALT];
-      uniqueness.value = 0.6 + Scope.create(children).value 
+      // TODO: придумать модфикатор лучше чем 1.5
+      uniqueness.value = 1.5 * ((Scope.create(children).value 
         + Commitment.create(children).value
-        + Inheritance.create(children, countries, membership).value;
+        + Inheritance.create(children, countries, membership).value) / 3);
+        // debugger;
     } else {
       debugger;
       throw new Error('unexpected value')

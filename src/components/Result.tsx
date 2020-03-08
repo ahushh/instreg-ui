@@ -41,7 +41,7 @@ export class ResultComponent extends React.Component<Partial<RouterProps> & IPro
       <Paragraph view='normal'>
         {isMultilateral && this.renderMultilateral(result, value)}
       </Paragraph>
-      <Chart type={chartType} />
+      <Chart type={chartType} countries={this.props.countries} />
       <Link to='/'>
         <Button size='xl'>
           Back

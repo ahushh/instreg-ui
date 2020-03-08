@@ -26,9 +26,9 @@ export class InheritanceRequired {
       const a = sum / selected.length;
 
       const subChildren = institutes[INHERITANCE_REQUIRED_YES].children || {};
-      const b = Scope.create(subChildren).value 
+      const b = (Scope.create(subChildren).value 
         + Commitment.create(subChildren).value
-        + Uniqueness.create(subChildren, countries, countriesMembership).value;
+        + Uniqueness.create(subChildren, countries, countriesMembership).value) / 3;
 
       instance.value = (a + b) / Object.keys(subChildren).filter(k => subChildren[k].value).length;
     } else {

@@ -6,6 +6,7 @@ import {
 import { AdvocacyData } from '../data/Advocacy';
 import { toPercent } from '../utils';
 import Heading from 'arui-feather/heading';
+import { ICountriesValues } from './Countries';
 
 const barStyle = { stroke: '#667788', strokeWidth: 1 };
 
@@ -40,12 +41,15 @@ const DiagonalHatch = (props: any) => {
 
 interface IProps {
   type: 'tel' | 'thal' | 'ind' | 'all';
+  countries: ICountriesValues;
 }
 
 export class Chart extends React.Component<IProps> {
 
   toChartsData(data: Array<string[]>) {
-    return data.map(([name, thal, tel, ind]) => {
+    return data
+    .filter(([name]) => this.props.countries[name])
+    .map(([name, thal, tel, ind]) => {
       let obj: any = {
         name
       };
