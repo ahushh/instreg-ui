@@ -1,6 +1,7 @@
 .App {
   display: flex;
   flex-direction: row;
+  padding-bottom: 66px;
 }
 
 .App__submit {
