@@ -48,12 +48,12 @@ export class CountriesComponent extends React.Component<IProps> {
         state[groupValue] = true;
       }
       if (allDeselected(group)) {
-        state[groupValue] = false
+        state[groupValue] = false;
       }
     }
 
-    handleCountryGroup(this.aseanCountries, 'АСЕАН');
-    handleCountryGroup(this.eaesCountries, 'ЕАЭС');
+    // handleCountryGroup(this.aseanCountries, 'АСЕАН');
+    // handleCountryGroup(this.eaesCountries, 'ЕАЭС');
 
     this.props.onChange(state);
   }
@@ -67,8 +67,8 @@ export class CountriesComponent extends React.Component<IProps> {
       }
     };
 
-    handleCountryGroup(this.aseanCountries, 'АСЕАН');
-    handleCountryGroup(this.eaesCountries, 'ЕАЭС');
+    // handleCountryGroup(this.aseanCountries, 'АСЕАН');
+    // handleCountryGroup(this.eaesCountries, 'ЕАЭС');
 
     return selected.length;
   }
@@ -82,6 +82,20 @@ export class CountriesComponent extends React.Component<IProps> {
     if (this.selectedCount && this.props.maxSelected === this.selectedCount) {
       return true;
     }
+    if (value === 'АСЕАН' && this.aseanCountries.every(c => this.props.values[c])) {
+      return true;
+    }
+    if (value === 'ЕАЭС' && this.eaesCountries.every(c => this.props.values[c])) {
+      return true;
+    }
+
+    if (this.props.values['АСЕАН'] && this.aseanCountries.includes(value)) {
+      return true;
+    }
+    if (this.props.values['ЕАЭС'] && this.eaesCountries.includes(value)) {
+      return true;
+    }
+
     return false;
   }
 
